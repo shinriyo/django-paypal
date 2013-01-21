@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.http import urlencode
 from django.forms.models import model_to_dict
 
+
 try:
     from idmapper.models import SharedMemoryModel as Model
 except ImportError:
