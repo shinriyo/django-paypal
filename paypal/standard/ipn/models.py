@@ -39,7 +39,7 @@ class PayPalIPN(PayPalStandardBase):
                 payment_was_successful.send(sender=self)
         # Recurring payment signals:
         # XXX: Should these be merged with subscriptions?
-        elif self.is_recurring():
+        if self.is_recurring():
             if self.is_recurring_create():
                 recurring_create.send(sender=self)
             elif self.is_recurring_payment():
@@ -54,8 +54,8 @@ class PayPalIPN(PayPalStandardBase):
                 recurring_suspended.send(sender=self)
             elif self.is_recurring_suspended_due_to_max_failed_payment():
                 recurring_suspended_due_to_max_failed_payment.send(sender=self)
-
-       # Subscription signals:
+        
+        # Subscription signals:
         else:
             if self.is_subscription_cancellation():
                 subscription_cancel.send(sender=self)
