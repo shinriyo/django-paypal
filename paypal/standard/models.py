@@ -127,6 +127,8 @@ class PayPalStandardBase(Model):
     amount = models.DecimalField(max_digits=64, decimal_places=2, default=0, blank=True, null=True)
     amount_per_cycle = models.DecimalField(max_digits=64, decimal_places=2, default=0, blank=True, null=True)
     initial_payment_amount = models.DecimalField(max_digits=64, decimal_places=2, default=0, blank=True, null=True)
+    initial_payment_txn_id = models.CharField("Initial Payment Transaction ID", max_length=19, blank=True)
+    initial_payment_status = models.CharField(max_length=17, blank=True)
     next_payment_date = models.DateTimeField(blank=True, null=True, help_text="HH:MM:SS DD Mmm YY, YYYY PST")
     outstanding_balance = models.DecimalField(max_digits=64, decimal_places=2, default=0, blank=True, null=True)
     payment_cycle = models.CharField(max_length=32, blank=True) #Monthly
