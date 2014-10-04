@@ -9,7 +9,7 @@ class PayPalNVPAdmin(admin.ModelAdmin):
     list_filter = ('flag', 'created_at')
     search_fields = ('user__email', 'ip_address', 'flag', 'firstname', 'lastname')
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         return super(PayPalNVPAdmin, self).queryset(request).prefetch_related('user')
 
 
