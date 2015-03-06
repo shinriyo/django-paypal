@@ -370,7 +370,7 @@ apps.
         ...
         urlpatterns = ('',
             ...
-            (r'^payment-url/$', 'myproject.views.buy_my_item')
+            (r'^payment-url/$', 'myproject.views.buy_my_item'),
             (r'^some/obscure/name/', include('paypal.standard.ipn.urls')),
         )
 
