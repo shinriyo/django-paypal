@@ -55,7 +55,9 @@ Using PayPal Payments Standard IPN:
         # views.py
         ...
         from paypal.standard.forms import PayPalPaymentsForm
+        from django.views.decorators.csrf import csrf_protec
 
+        @csrf_protec
         def view_that_asks_for_money(request):
 
             # What you want the button to do.
@@ -261,7 +263,9 @@ it. Thanks to [Jon Atkinson](http://jonatkinson.co.uk/) for the
 
         # views.py
         from paypal.standard.forms import PayPalEncryptedPaymentsForm
+        from django.views.decorators.csrf import csrf_protect
 
+        @csrf_protect
         def view_that_asks_for_money(request):
             ...
             # Create the instance.
@@ -289,7 +293,9 @@ Use postbacks for validation if:
 
         # views.py
         from paypal.standard.forms import PayPalSharedSecretEncryptedPaymentsForm
+        from django.views.decorators.csrf import csrf_protect
 
+        @csrf_protect
         def view_that_asks_for_money(request):
             ...
             # Create the instance.
@@ -327,8 +333,11 @@ apps.
 4. Write a wrapper view for `paypal.pro.views.PayPalPro`:
 
         # views.py
+        
         from paypal.pro.views import PayPalPro
+        from django.views.decorators.csrf import csrf_protect
 
+        @csrf_protect
         def buy_my_item(request):
           item = {"amt": "10.00",             # amount to charge for item
                   "inv": "inventory",         # unique tracking variable paypal
@@ -351,14 +360,14 @@ apps.
 
         <!-- payment.html -->
         <h1>Show me the money</h1>
-        <form method="post" action="">
+        <form method="post" action="">{% csrf_token %}
           {{ form }}
           <input type="submit" value="Pay Up">
         </form>
 
         <!-- confirmation.html -->
         <h1>Are you sure you want to buy this thing?</h1>
-        <form method="post" action="">
+        <form method="post" action="">{% csrf_token %}
           {{ form }}
           <input type="submit" value="Yes I Yams">
         </form>
